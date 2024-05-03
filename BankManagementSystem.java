@@ -38,7 +38,7 @@ class BankAccount {
         } else if (previousTransaction < 0) {
             System.out.println("Withdraw :" + Math.abs(previousTransaction));
         } else {
-            System.out.println("Transactinos Failed...");
+            System.out.println("Transactions have not been done yet...");
         }
     }
 

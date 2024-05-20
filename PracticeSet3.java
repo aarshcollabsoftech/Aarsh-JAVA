@@ -21,7 +21,7 @@ public static void main(String[] args) {
 
     // ---Q3
     // System.out.println("Answer 3");
-    // String letter = "Dear <|name|> , Trans a lot";
+    // String letter = "Dear <|name|> , Thanks a lot";
     // System.out.println(letter);
     // System.out.println("Enter Name");
     // String replacee = sc.nextLine();
@@ -33,13 +33,13 @@ public static void main(String[] args) {
     // System.out.println("Answer 4");
     // String str = "My name  is   Aarsh ";
     //  System.out.println(str.indexOf("  "));
-    //  System.out.println(str.indexOf("   "));  n 
+    //  System.out.println(str.indexOf("   "));  
 
 
     // ---Q5 
-    // System.out.println("Answer 5");
-    // String str = "Dear Aarsh,\n This is a nice course.\n\tThanks";
-    // System.out.println(str);
+    System.out.println("Answer 5");
+    String str = "Dear Aarsh,\n This is a nice course.\n\tThanks";
+    System.out.println(str);
     
     sc.close();
 }

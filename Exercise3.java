@@ -22,7 +22,7 @@ class Game{
         System.out.println("Guess the number");
         Scanner sc = new Scanner(System.in);
         inputNumber = sc.nextInt();
-        sc.close();
+        
     }
     boolean isCorrectNumber(){
         noOfGuesses++;

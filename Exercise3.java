@@ -18,9 +18,8 @@ class Game{
         Random rand = new Random();
         this.number = rand.nextInt(100);
     }
-    void takeUserInput(){
+    void takeUserInput(Scanner sc){
         System.out.println("Guess the number");
-        Scanner sc = new Scanner(System.in);
         inputNumber = sc.nextInt();
         
     }
@@ -51,13 +50,14 @@ public class Exercise3 {
             4. getter and setter for noOfGuesses
             Use properties such as noOfGuesses(int), etc to get this task done!
          */
+        Scanner sc = new Scanner(System.in);
 
         Game g = new Game();
         boolean b= false;
         while(!b){
-        g.takeUserInput();
+        g.takeUserInput(sc);
         b = g.isCorrectNumber();
         }
-
+        sc.close();
     }
 }

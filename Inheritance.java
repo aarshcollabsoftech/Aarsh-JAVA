@@ -1,42 +1,53 @@
+class Vehicle {
+    // Fields
+    protected String brand;
+    protected int year;
 
-class Base{
-    public int x;
+    // Parameterized constructor
+    public Vehicle(String brand, int year) {
+        this.brand = brand;
+        this.year = year;
+    }
 
-    public int getX(){
-        return x;
-    }
-    public void setX(int x){
-        System.out.println("I am setting X now");
-        this.x= x;
-    }
-    public void printMe(){
-        System.out.println("I am a constructor");
+    // Method
+    public void displayInfo() {
+        System.out.println("Brand: " + brand);
+        System.out.println("Year: " + year);
     }
 }
 
-class Derived extends Base{         // extends base makes everything from base class available to Derived class
-   public  int y;
-    
-    public int getY(){
-        return y;
+class Car extends Vehicle {
+    // Field
+    private int price;
+
+    // Parameterized constructor
+    public Car(String brand, int year, int price) {
+        super(brand, year); // Call to superclass constructor
+        this.price = price;
     }
-    public void setY(int y){
-        System.out.println("I am setting Y now");
-        this.y= y;
+
+    // Overriding method
+    @Override
+    public void displayInfo() {
+        super.displayInfo(); // Call to superclass method
+        System.out.println("Price: " + price);
+    }
+
+    // Method to demonstrate accessing superclass variable
+    public void displayBrand() {
+        System.out.println("Vehicle Brand: " + super.brand); // Access to superclass variable
     }
 }
+
 public class Inheritance {
- public static void main(String[] args) {
-    Base b = new Base();
-    b.setX(4);
-    System.out.println(b.getX());
-    
-    Derived d = new Derived();
-    d.setX(45);
-    System.out.println(d.getX());
-    d.setY(62);
-    System.out.println(d.getY());
-    
+    public static void main(String[] args) {
+        // Creating an instance of Car
+        Car myCar = new Car("Toyota", 2020, 30000);
 
- }
+        // Display information using overridden method
+        myCar.displayInfo();
+
+        // Display brand using method accessing superclass variable
+        myCar.displayBrand();
+    }
 }

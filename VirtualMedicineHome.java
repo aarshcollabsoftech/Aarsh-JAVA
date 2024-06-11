@@ -73,6 +73,17 @@ class Inventory {
             }
         }
     }
+
+    public synchronized boolean checkMedicineAvailability(String name) {
+        for (Medicine medicine : medicines) {
+            if (medicine.name.equals(name)) {
+                System.out.println("Medicine is available: " + name);
+                return true;
+            }
+        }
+        System.out.println("Medicine not found: " + name);
+        return false;
+    }
 }
 
 // Thread to add medicines to inventory
@@ -107,6 +118,22 @@ class RemoveMedicineThread extends Thread {
     }
 }
 
+// Thread to check medicine availability in inventory
+class CheckMedicineThread extends Thread {
+    private Inventory inventory;
+    private String medicineName;
+
+    public CheckMedicineThread(Inventory inventory, String medicineName) {
+        this.inventory = inventory;
+        this.medicineName = medicineName;
+    }
+
+    @Override
+    public void run() {
+        inventory.checkMedicineAvailability(medicineName);
+    }
+}
+
 // Main class to run the virtual medicine home
 public class VirtualMedicineHome {
     public static void main(String[] args) {
@@ -117,7 +144,7 @@ public class VirtualMedicineHome {
         while (true) {
             System.out.println("\nVirtual Medicine Home");
             System.out.println("1. Add Prescription Medicine");
-            System.out.println("2. Add Over-the-Counter Medicine");
+            System.out.println("2. Check Over-the-Counter Medicine Availability");
             System.out.println("3. Remove Medicine");
             System.out.println("4. Display All Medicines");
             System.out.println("5. Exit");
@@ -142,16 +169,10 @@ public class VirtualMedicineHome {
                     addPrescriptionThread.start();
                     break;
                 case 2:
-                    System.out.print("Enter medicine name: ");
+                    System.out.print("Enter medicine name to check: ");
                     String oName = scanner.nextLine();
-                    System.out.print("Enter price: ");
-                    double oPrice = scanner.nextDouble();
-                    System.out.print("Enter quantity: ");
-                    int oQuantity = scanner.nextInt();
-                    scanner.nextLine();  // Consume newline
-                    Medicine overTheCounterMedicine = new OverTheCounterMedicine(oName, oPrice, oQuantity);
-                    Thread addOTCThread = new AddMedicineThread(inventory, overTheCounterMedicine);
-                    addOTCThread.start();
+                    Thread checkMedicineThread = new CheckMedicineThread(inventory, oName);
+                    checkMedicineThread.start();
                     break;
                 case 3:
                     System.out.print("Enter medicine name to remove: ");

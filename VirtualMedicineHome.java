@@ -24,7 +24,7 @@ class PrescriptionMedicine extends Medicine {
     public PrescriptionMedicine(String name, double price, int quantity, String doctorName) {
         super(name, price, quantity);
         this.doctorName = doctorName;
-    }
+    } 
 
     @Override
     public void displayInfo() {
